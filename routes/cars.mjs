@@ -17,7 +17,6 @@ router.get('/cars/:id', (request, response) => {
         return response.status(400).send({ msg: "Bad Request. Invalid ID." });
 
 const findCar = cars.find((car) => car.id === parsedId);
-
 if (!findCar) return response.sendStatus(404);
 return response.send(findCar);
 
