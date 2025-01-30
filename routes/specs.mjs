@@ -4,7 +4,9 @@ import { specs } from '../data/specdats.mjs';
 
 const router = Router();
 
-router.get
+router.get('/cars', (request, response)=>{
+    response.status(200).send(cars);
+});
 
 
 
