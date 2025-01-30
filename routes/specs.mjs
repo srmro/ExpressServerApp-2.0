@@ -30,11 +30,32 @@ router.post('/specs', (request, response) =>{
     return response.status(201).send(newSpec);
 });
 
+router.patch('/specs/:id', (request, response) => {
+    const {body, params: {id},} = request;
 
+    const parsedId = parseInt(id);
+    if (isNaN(parsedId)) return response.status(400);
 
+    const findSpecIndex = specs.findIndex((spec) => spec.id === parsedId);
 
+    if(findSpecIndex === -1) return response.sendStatus(404);
+    specs[findSpecIndex] = { id: parsedId, ...body};
 
+    return response.sendStatus(200);
+});
 
+router.delete('/specs/:id', (request, response) => {
+    const { params:{id}, } = request;
+    const parsedId = parseInt(id);
+
+    if(isNaN(parsedId)) return response.sendStatus(400);
+    const findSpecIndex = specs.findIndex((spec) => spec.id === parsedId);
+
+    if (findSpecIndex === -1) return response.sendStatus(404);
+    cars.splice(findSpecIndex, 1);
+
+    return response.sendStatus(200);
+})
 
 
 

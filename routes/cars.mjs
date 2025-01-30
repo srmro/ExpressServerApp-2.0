@@ -56,7 +56,7 @@ if(isNaN(parsedId)) return response.sendStatus(400);
 const findCarIndex = cars.findIndex((car) => car.id === parsedId);
 
 if (findCarIndex === -1) return response.sendStatus(404);
-cars.splice(findCarIndex);
+cars.splice(findCarIndex, 1);
 
 return response.sendStatus(200);
 
